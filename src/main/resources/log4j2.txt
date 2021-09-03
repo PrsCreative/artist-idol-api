@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+
+	<Properties>
+		<Property name="logPath">${sys:LOG_PATH}</Property>
+		<Property name="podName">${sys:KUBERNETES_PODNAME}</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%highlight{[%-5p] | %d{DEFAULT} | [%t] %C{2} (%F:%L) - BTLG_SEQ_ID=%X{BTLG_SEQ_ID} - %m%n}{TRACE=Normal}" disableAnsi="false" />
+		</Console>
+
+		<RollingFile name="BizFeeApi_File">
+			<FileName>${logPath}/${date:yyyy-MM-dd-HH}/${podName}/BizFeeApi.log</FileName>
+			<FilePattern>${logPath}/${date:yyyy-MM-dd}/${podName}/BizFeeApi.log.%d{yyyy-MM-dd-HH}.%i</FilePattern>
+			<PatternLayout pattern="%highlight{[%-5p]|%d{DEFAULT}|[%t] - BTLG_SEQ_ID=%X{BTLG_SEQ_ID} - %m%n}{TRACE=Normal}" disableAnsi="false" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="1 MB" />
+			</Policies>
+			<!-- <DefaultRolloverStrategy max="20" /> -->
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<Root level="error">
+			<AppenderRef ref="Console" />
+		</Root>
+
+		<Logger name="com.prs.biz" level="info">
+			<AppenderRef ref="BizFeeApi_File" />
+		</Logger>
+	</Loggers>
+
+</Configuration>
