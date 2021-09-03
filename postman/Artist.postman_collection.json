@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "8feae129-1836-44f0-8cb5-ac66daf16a33",
+		"name": "Artist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ido-getinfo",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "idol",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"requestBody\": {\r\n    \"name\": \"POTATO\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/idol/getinfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"idol",
+						"getinfo"
+					]
+				},
+				"description": "Save doc"
+			},
+			"response": []
+		}
+	]
+}
